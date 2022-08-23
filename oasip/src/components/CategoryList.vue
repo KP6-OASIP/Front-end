@@ -1,9 +1,9 @@
 <script setup>
-import { onBeforeMount, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { onBeforeMount, ref } from "vue"
+import { useRoute, useRouter } from "vue-router"
 console.clear();
 
-const router = useRouter();
+const router = useRouter()
 
 defineProps({
   eventCategories: {

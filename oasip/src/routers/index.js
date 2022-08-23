@@ -5,6 +5,8 @@ import EventDetail from '../views/EventDetail.vue'
 import EditEvent from '../views/EditEvent.vue'
 import EditCategory from '../views/EditCategory.vue'
 import ClinicCategory from '../views/ClinicCategory.vue'
+import User from '../views/User.vue'
+import TestForm from '../views/TestForm.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const history = createWebHashHistory(import.meta.env.VITE_APP_TITLE)
@@ -43,6 +45,16 @@ const routes = [
     path: '/edit-cat',
     name: 'edit-cat',
     component: EditCategory,
+  },
+  {
+    path: '/all-user',
+    name: 'all-user',
+    component: User,
+  },
+  {
+    path: '/test-form',
+    name: 'test-form',
+    component: TestForm,
   },
   
 ]
