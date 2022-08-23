@@ -55,32 +55,56 @@ const showDetails = (id) => {
 </script>
  
 <template>
-<div @click="showDetails(users.id)">
+<div >
    <div v-show="users.length > 0">
-    <div
-      class="card card-side m-4 bg-base-100 shadow-xl w-auto h-50 flex items-stretch px-5 dark:border-gray-700 text-kanit cursor-pointer hover:bg-gray-100"
-    >
-      <!-- <div class="flex flex-col w-full"> -->
-      <figure>
-        <img class="shrink-0 mb-14 w-20 rounded-full" src="/02-2.png" alt="1" />
-      </figure>
-      <div class="card-body">
-        <h5 class="mb-1 text-left font-kanit text-gray-900 dark:text-white">
-          <div class="ltr:ml-3">
-            <p class="font-bold text-2xl">
-              {{ users.name }}
-            </p>
-            <p class="text-gray-500 dark:text-white">
-              Email :
-              {{ users.email }}
-            </p>
-            <p class="text-gray-500 dark:text-white">
-              Role :
-              {{ users.role }} 
-            </p>
+    <div class="card p-10 w-full">
+      <div
+        class="
+          card
+          lg:card-side
+          bg-base-100
+          shadow-xl
+          m-auto
+          p-5
+          w-auto
+
+        "
+      >
+        <div class="overflow-x-auto">
+          <div
+            class="
+              p-5
+              rounded-lg
+              text-center text-2xl
+              font-bold
+              dark:bg-white dark:text-black
+            "
+          >
+            All Users
           </div>
-          <br />
-        </h5>
+          <table class="table table-zebra ">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="user in users"
+                :key="user"
+                :users="user"
+              >
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td class="hover:bg-gray-100"><button @click="showDetails(user.id)">details</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

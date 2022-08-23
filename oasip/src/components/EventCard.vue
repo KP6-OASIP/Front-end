@@ -3,6 +3,7 @@
 import { useRoute, useRouter } from 'vue-router'
 import dayjs from 'dayjs'
 console.clear()
+
 defineProps({
   events: {
     type: Array,

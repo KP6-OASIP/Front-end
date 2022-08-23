@@ -10,6 +10,10 @@ const minCount = 0 // ตัวแปรเพื่อบอกจำนวน�
 const name = ref('')
 const maxCountmail = 50
 const mail = ref('')
+const users =ref([])
+const summit = ()=>{
+  addUsers()
+}
 
 const props = defineProps({
   users: {
@@ -18,7 +22,35 @@ const props = defineProps({
   }
 })
 
+const getAllusers = async () => {
+  const res = await fetch(
+    `${import.meta.env.VITE_APP_TITLE}/api/users`
+  )
+  if (res.status === 201) {
+    users.value = await res.json()
+  } else {
+    console.log('can not get values')
+  }
+}
+onBeforeMount(async () => {
+  await getAllusers()
+})
 
+const addUsers = async () => {
+  const  res = await fetch(userLink, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      name: name.value ,
+      mail: mail.value,
+      role: role.value,
+      createOn: "2022-08-1T17:00:00Z",
+      updateOn: "2022-08-1T17:00:00Z"
+    })
+  })
+}
 </script>
  
 <template>
@@ -68,7 +100,7 @@ const props = defineProps({
             Role :
           </p>
           <select
-            v-model="eventCategoryID"
+            v-model="role"
             class="bg-white border border-gray-300 text-black text-m focus:ring-0 w-[100%] h-8 rounded-lg"
           >
             <option disabled value="">Select Role</option>
@@ -76,7 +108,9 @@ const props = defineProps({
             <option>admin</option>
             <option>lecturer</option>
           </select>
-             
+             <div>
+          <button class="text-white bg-pink-400 hover:bg-pink-600 focus:ring-0 focus:ring-pink-600 font-medium rounded-lg text-sm px-5 py-2.5" @click="summit">summit</button>
+        </div>
 </form>
 </div>
         

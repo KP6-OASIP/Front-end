@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import UserList from '../components/UserList.vue'
+import UserList from '../components/UserList(test).vue'
 
 const users = ref([])
 
@@ -30,10 +30,15 @@ onBeforeMount(async () => {
       <p class="text-center text-lg mt-10">No Users</p>
     </div>
     <!--Show all users -->
-      <!-- ทำ loop card เรียกใช้จาก db -->
       <div>
-        <UserList  />
-      </div>
+        <UserList />
+      </div>  
+    <!-- <div class="flex px-20 grid grid-cols-3 content-center"> -->
+      <!-- ทำ loop card เรียกใช้จาก db -->
+       <!-- <div v-for="user in users" :key="user">
+        <UserList :users="user" />
+      </div>     
+    </div> -->
   </body>
 </template>
  
