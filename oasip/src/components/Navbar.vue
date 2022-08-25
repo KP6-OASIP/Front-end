@@ -45,14 +45,6 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'booking-event' }">
-              <a
-                class="mt-3 ctext-base text-white xs:text-base sm:text-base md:text-base lg:text-base block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-rose-500 md:p-0 dark:text-white"
-                >Booking</a
-              >
-            </router-link>
-          </li>
-          <li>
             <router-link :to="{ name: 'clinic-cat' }">
               <a
                 class="mt-3 text-base text-white xs:text-base sm:text-base md:text-base lg:text-base block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-rose-500 md:p-0 dark:text-white"
@@ -75,7 +67,8 @@
                 >TestForm</a
               >
             </router-link>
-          </li>          
+          </li>
+             
           <li tabindex="0" class="btn btn-ghost btn-circle avatar block md:p-0">     
               <div class="rounded-full">
                 <img src="/02-3.png" />

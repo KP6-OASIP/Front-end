@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import UserList from '../components/UserList(test).vue'
+import UserList from '../components/UserList.vue'
+
 
 const users = ref([])
 

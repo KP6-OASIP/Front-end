@@ -1,6 +1,8 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
+import UserDetail from '../views/UserDetail.vue'
 console.clear()
 
 defineProps({
@@ -55,36 +57,53 @@ const showDetails = (id) => {
 </script>
  
 <template>
-<div @click="showDetails(users.id)">
-   <div v-show="users.length > 0">
-    <div
-      class="card card-side m-4 bg-base-100 shadow-xl w-auto h-50 flex items-stretch px-5 dark:border-gray-700 text-kanit cursor-pointer hover:bg-gray-100"
-    >
-      <!-- <div class="flex flex-col w-full"> -->
-      <figure>
-        <img class="shrink-0 mb-14 w-20 rounded-full" src="/02-2.png" alt="1" />
-      </figure>
-      <div class="card-body">
-        <h5 class="mb-1 text-left font-kanit text-gray-900 dark:text-white">
-          <div class="ltr:ml-3">
-            <p class="font-bold text-2xl">
-              {{ users.name }}
-            </p>
-            <p class="text-gray-500 dark:text-white">
-              Email :
-              {{ users.email }}
-            </p>
-            <p class="text-gray-500 dark:text-white">
-              Role :
-              {{ users.role }} 
-            </p>
-          </div>
-          <br />
-        </h5>
-      </div>
-    </div>
-  </div>
+
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+  
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Email
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Role
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                v-for="user in users"
+                :key="user"
+                :users="user"
+            >
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ user.name }}
+                </th>
+                <td class="py-4 px-6">
+                    {{ user.email }}
+                </td>
+                <td class="py-4 px-6">
+                    {{ user.role }}
+                </td>
+                <td class="py-4 px-6">
+                    <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" 
+                    @click="showDetails(user.id)">Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+<!-- <UserDetail>
+<button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="defaultModal">
+  Toggle modal
+</button>
+</UserDetail> -->
 </template>
  
 <style>

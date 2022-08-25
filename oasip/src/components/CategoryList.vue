@@ -110,13 +110,8 @@ const editCat = (id) => {
                   
                 <!-- </td> -->
                 <td>
-                  <label
-                    for="edit-modal"
-                    class="btn btn-ghost btn-circle"
-                    @click="editCat(eventCategory.id)"
-                  >
-                    <img src="/edit-icon.ico" class="h-5 w-5" />
-                  </label>
+                    <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    @click="editCat(eventCategory.id)">Edit</button>
                 </td>
               </tr>
             </tbody>

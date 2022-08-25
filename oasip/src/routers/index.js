@@ -56,12 +56,14 @@ const routes = [
     path: '/test-form',
     name: 'test-form',
     component: TestForm,
-  },
+  }
+  ,
   {
     path: '/user-detail',
     name: 'user-detail',
     component: UserDetail,
   }
+
   
 ]
 
