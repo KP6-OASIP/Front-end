@@ -57,19 +57,39 @@ const showDetails = (id) => {
 </script>
  
 <template>
-
+      <div
+        class="
+          card
+          dark:bg-gray-800
+          shadow-xl
+          m-auto
+          p-6
+          w-10/12
+        "
+      >
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-  
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <div
+            class="
+              p-5
+              rounded-lg
+              text-center text-2xl
+              font-bold
+              dark:bg-white dark:text-black
+              m-auto
+            "
+          >
+            All users
+          </div>
+    <table class=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" class="py-3 px-10">
                     Name
                 </th>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" class="py-3 px-10">
                     Email
                 </th>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" class="py-3 px-10">
                     Role
                 </th>
                 <th>
@@ -98,6 +118,7 @@ const showDetails = (id) => {
             </tr>
         </tbody>
     </table>
+</div>
 </div>
 <!-- <UserDetail>
 <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="defaultModal">
