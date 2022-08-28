@@ -1,9 +1,17 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
 import UserList from '../components/UserList.vue'
+import UserDetail from '../components/UserDetail.vue';
 
 
 const users = ref([])
+const userDetail = ref({})
+const isModal = ref(false)
+
+const getUserDetails = (e) => {
+  userDetail.value = e
+  isModal.value = true
+}
 
 const getUsers = async () => {
   const res = await fetch(
@@ -32,7 +40,10 @@ onBeforeMount(async () => {
     </div>
     <!--Show all users -->
       <div>
-        <UserList />
+        <UserList @detail="getUserDetails"  />
+      </div>
+      <div v-if="isModal">
+        <UserDetail :users="userDetail" @close=""/>
       </div>  
     <!-- <div class="flex px-20 grid grid-cols-3 content-center"> -->
       <!-- ทำ loop card เรียกใช้จาก db -->

@@ -1,9 +1,9 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
-import UserDetail from '../views/UserDetail.vue'
 console.clear()
+
+defineEmits(['showDetails'])
 
 defineProps({
   users: {
@@ -48,12 +48,12 @@ onBeforeMount(async () => {
 // })
 const router = useRouter()
 
-const showDetails = (id) => {
-  router.push({
-    name: 'user-detail',
-    query: { id: id },
-  })
-}
+// const showDetails = (id) => {
+//   router.push({
+//     name: 'user-detail',
+//     query: { id: id },
+//   })
+// }
 </script>
  
 <template>
@@ -113,7 +113,7 @@ const showDetails = (id) => {
                 </td>
                 <td class="py-4 px-6">
                     <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" 
-                    @click="showDetails(user.id)">Details</button>
+                    @click="$emit('showDetails',user)">Details</button>
                 </td>
             </tr>
         </tbody>

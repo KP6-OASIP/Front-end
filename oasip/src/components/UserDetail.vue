@@ -8,6 +8,13 @@ const router = useRouter()
 const getUserDetails = ref({})
 const goBack = () => router.go(-1) // ให้กลับไปหน้าก่อนหน้า
 
+defineProps({
+  users: {
+    type: Array,
+    required: true,
+  },
+})
+
 const getUsersById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
@@ -61,11 +68,11 @@ onBeforeMount(async () => {
         </li>
         <li>
           <span class="font-bold"> Created on :</span>
-          {{ dayjs(getUserDetails.createOn).format('DD MMM YYYY') }}
+          {{ dayjs(getUserDetails.createOn) }}
         </li>
         <li>
           <span class="font-bold">Updated on:</span>
-          {{ dayjs(getUserDetails.updateOn).format('DD MMM YYYY')}}
+          {{ dayjs(getUserDetails.updateOn)}}
         </li>
       </ul>
 
