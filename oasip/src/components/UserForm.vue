@@ -9,35 +9,10 @@ const maxCountName = 100 // ตัวแปรเพื่อบอกว่า 
 const minCount = 0 // ตัวแปรเพื่อบอกจำนวนตัวอักษรของ name, notes
 const name = ref('')
 const maxCountmail = 50
-const email = ref('')
+const mail = ref('')
 const users =ref([])
-const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`
-
-//validate
-const checkNameN = ref(undefined)
-const checkEmailN = ref(undefined)
 const summit = ()=>{
-
-//check name null
-if(name.value.length == 0){
-  checkNameN.value = true
-  console.log('name is null')
-}else checkNameN.value = false
-
-//cheak email null
-if(email.value.length == 0){
-  checkEmailN.value = true
-  console.log('email is null')
-}else checkEmailN.value = false
-
-//last check
-if(checkNameN.value == false && checkEmailN.value == false){
   addUsers()
-  console.log('last check')
-}
-  // console.log(name.value)
-  // console.log(email.value)
-  // console.log(role.value)
 }
 
 const props = defineProps({
@@ -49,7 +24,7 @@ const props = defineProps({
 
 const getAllusers = async () => {
   const res = await fetch(
-    userLink
+    `${import.meta.env.VITE_APP_TITLE}/api/users`
   )
   if (res.status === 201) {
     users.value = await res.json()
@@ -69,17 +44,16 @@ const addUsers = async () => {
     },
     body: JSON.stringify({
       name: name.value ,
-      email: email.value,
-      role: role.value
+      mail: mail.value,
+      role: role.value,
+      createOn: "2022-08-1T17:00:00Z",
+      updateOn: "2022-08-1T17:00:00Z"
     })
-  }) ;if(res.status == 201){
-    console.log('good status')
-  }else console.log('bad status')
+  })
 }
 </script>
-
+ 
 <template>
-<div class="w-full bg-sky-100 dark:bg-sky-100 m-auto">
 <div class="card lg:card-side bg-base-100 shadow-xl m-auto p-20 w-7/12">
 <form class="leading-loose flex flex-col gap-3 w-[100%]">
   <div>
@@ -94,7 +68,6 @@ const addUsers = async () => {
               class="bg-white border border-gray-300 text-black text-m focus:ring-0 w-[100%] rounded-lg"
             />
             <span class="text-xs ml-[95%] text-gray-400"
-            :style="[name.length == 100?'color:red':'']"
               >{{ minCount + name.length }}/{{ maxCountName }}</span
             >
           </div>
@@ -113,8 +86,7 @@ const addUsers = async () => {
               class="peer bg-white border border-gray-300 text-black text-m focus:ring-0 w-[100%] rounded-lg"
             />
             <span class="text-xs ml-[95%] text-gray-400"
-            :style="[email.length == 50?'color:red':'']"
-              >{{ minCount + email.length }}/{{ maxCountmail }}</span
+              >{{ minCount + mail.length }}/{{ maxCountmail }}</span
             >
             <p
               class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm"
@@ -141,7 +113,9 @@ const addUsers = async () => {
         </div>
 </form>
 </div>
-</div>   
+        
 </template>
+ 
+<style>
 
-<style></style>
+</style>

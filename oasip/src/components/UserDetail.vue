@@ -6,32 +6,39 @@ import dayjs from 'dayjs'
 const route = useRoute()
 const router = useRouter()
 const getUserDetails = ref({})
+
 const goBack = () => router.go(-1) // ให้กลับไปหน้าก่อนหน้า
 
+defineEmits(['close'])
+
 defineProps({
-  users: {
-    type: Array,
-    required: true,
-  },
+  user: {
+    type: Object
+  }
 })
 
-const getUsersById = async (id) => {
-  if (route.query.id) {
-    const id = route.query.id
+// สร้างตัวแปร เพื่อเรียกใช้และส่งไปหน้าต่อไป ตาม id
+const editUser = (id) => {
+  console.log(id)
+  router.push({
+    name: 'edit-user',
+    query: { id: id },
+  })
+}
+
+// สร้างตัวแปรเพื่อเก็บ async func. เพื่อ fetch ไปติดต่อกับ data ที่ backend เพื่อลบข้อมูลตาม id โดยเมื้อลบสำเร็จให้กลับไปที่หน้าก่อนหน้า
+const removeUser = async () => {
+  if (confirm('Are you sure you want to delete ?') == true) {
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/users/${id}`
+      `${import.meta.env.VITE_APP_TITLE}/api/users/${route.query.id}`,
+      {
+        method: 'DELETE',
+      }
     )
-    if (res.status === 200) {
-      const data = await res.json()
-      getUserDetails.value = data
-    } else {
-      console.log('can not get values')
-    }
+    router.go(-1)
+  } else {
   }
 }
-onBeforeMount(async () => {
-  await getUsersById()
-})
 </script>
  
 <template>
@@ -46,35 +53,55 @@ onBeforeMount(async () => {
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                     User Detail
                 </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="goBack">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" 
+                @click="$emit=('close', false)">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
-                    <span class="sr-only">Close modal</span>
+                    <!-- <span class="sr-only">Close modal</span> -->
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6">
+            <div
+            class="p-6 space-y-6">
                 <ul  class="text-x">
         <li>
-          <span class="font-bold">Name :</span> {{ getUserDetails.name }}
+          <span class="font-bold">Name :</span> {{ user.name }}
         </li>
         <li>
-          <span class="font-bold">Email :</span> {{ getUserDetails.email }}
+          <span class="font-bold">Email :</span> {{ user.email }}
         </li>
         <li>
           <span class="font-bold"> Role :</span>
-          {{ getUserDetails.role }}
+          {{ user.role }}
         </li>
         <li>
           <span class="font-bold"> Created on :</span>
-          {{ dayjs(getUserDetails.createOn) }}
+          {{ dayjs(user.createOn) }}
         </li>
         <li>
           <span class="font-bold">Updated on:</span>
-          {{ dayjs(getUserDetails.updateOn)}}
+          {{ dayjs(user.updateOn)}}
         </li>
       </ul>
+      &nbsp;
+      <!-- v-on เพื่อ click แล้วไปทำ edit event func. -->
+      <button
+        type="button"
+        @click="editEvent(getDetails.id)"
+        class="bg-yellow-500 w-[70%] hover:bg-gray-400 rounded-lg text-white font-bold py-2 px-10 border-gray-700 hover:border-gray-500"
+      >
+        Edit
+      </button>
+      <br>
+      <!-- v-on เพื่อ click แล้วไปทำ remove event func. -->
+      <button
+        type="button"
+        @click="removeUser"
+        class="bg-red-700 w-[70%] hover:bg-gray-400 rounded-lg text-white font-bold py-2 px-10 border-gray-700 hover:border-gray-500"
+      >
+        Delete
+      </button>
 
             </div>
             <!-- Modal footer -->

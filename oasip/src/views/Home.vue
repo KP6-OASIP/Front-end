@@ -27,8 +27,6 @@ onBeforeMount(async () => {
     class="w-full min-h-screen bg-gradient-to-bl from-sky-200 via-rose-200 to-cyan-100 items-center justify-center"
   >
     <br />
-    <br />
-    <br />
     <div
       class="flex flex-wrap-reverse mt-20 gap-y-24 justify-between py-12 px-6 mx-auto max-w-screen-xl sm:px-8 md:px-12 lg:px-16 xl:px-24"
     >
@@ -49,12 +47,11 @@ onBeforeMount(async () => {
           เว็บไซต์การนัดหมาย
         </p>
         <div class="flex pt-8 space-x-4 sm:space-x-6">
-          <router-link :to="{ name: 'booking-event' }"
-            ><button
-              class="flex justify-center items-center w-full sm:w-auto h-13 px-8 bg-purple-700 font-medium text-white rounded-xl whitespace-nowrap hover:shadow-primary transition-shadow duration-300"
-            >
-              Booking
-            </button></router-link
+          <router-link :to="{ name: 'booking-event' }">
+            <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 
+            dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-md px-10 py-2.5 text-center mr-2 mb-2">
+            Booking</button>
+            </router-link
           >
         </div>
       </div>

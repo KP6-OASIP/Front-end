@@ -6,24 +6,15 @@ import dayjs from 'dayjs'
 const route = useRoute()
 const router = useRouter()
 const getUserDetails = ref({})
+
 const goBack = () => router.go(-1) // ให้กลับไปหน้าก่อนหน้า
 
-const getUsersById = async (id) => {
-  if (route.query.id) {
-    const id = route.query.id
-    const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/users/${id}`
-    )
-    if (res.status === 200) {
-      const data = await res.json()
-      getUserDetails.value = data
-    } else {
-      console.log('can not get values')
-    }
+defineEmits(['close'])
+
+defineProps({
+  user: {
+    type: Object
   }
-}
-onBeforeMount(async () => {
-  await getUsersById()
 })
 </script>
  
@@ -46,23 +37,23 @@ onBeforeMount(async () => {
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <ul  class="text-x">
-        <li>
-          <span class="font-bold">Name :</span> {{ getUserDetails.name }}
+                  <li>
+          <span class="font-bold">Name :</span> {{ user.name }}
         </li>
         <li>
-          <span class="font-bold">Email :</span> {{ getUserDetails.email }}
+          <span class="font-bold">Email :</span> {{ user.email }}
         </li>
         <li>
           <span class="font-bold"> Role :</span>
-          {{ getUserDetails.role }}
+          {{ user.role }}
         </li>
         <li>
           <span class="font-bold"> Created on :</span>
-          {{ dayjs(getUserDetails.createOn).format('DD MMM YYYY') }}
+          {{ dayjs(user.createOn) }}
         </li>
         <li>
           <span class="font-bold">Updated on:</span>
-          {{ dayjs(getUserDetails.updateOn).format('DD MMM YYYY')}}
+          {{ dayjs(user.updateOn)}}
         </li>
       </ul>
             </div>

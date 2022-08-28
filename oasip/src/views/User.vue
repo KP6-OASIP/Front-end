@@ -13,6 +13,10 @@ const getUserDetails = (e) => {
   isModal.value = true
 }
 
+const closeModal = (u) => {
+  isModal.value = u
+}
+
 const getUsers = async () => {
   const res = await fetch(
     `${import.meta.env.VITE_APP_TITLE}/api/users`
@@ -40,10 +44,10 @@ onBeforeMount(async () => {
     </div>
     <!--Show all users -->
       <div>
-        <UserList @detail="getUserDetails"  />
+        <UserList @showDetails="getUserDetails"  />
       </div>
       <div v-if="isModal">
-        <UserDetail :users="userDetail" @close=""/>
+        <UserDetail :user="userDetail" @close="closeModal"/>
       </div>  
     <!-- <div class="flex px-20 grid grid-cols-3 content-center"> -->
       <!-- ทำ loop card เรียกใช้จาก db -->
