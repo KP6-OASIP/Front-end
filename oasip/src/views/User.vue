@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import UserList from '../components/UserList.vue'
-import UserDetail from '../components/UserDetail.vue';
+import UserList from '../components/UserListCard.vue'
+
 
 
 const users = ref([])
@@ -11,10 +11,6 @@ const isModal = ref(false)
 const getUserDetails = (e) => {
   userDetail.value = e
   isModal.value = true
-}
-
-const closeModal = (u) => {
-  isModal.value = u
 }
 
 const getUsers = async () => {
@@ -36,6 +32,7 @@ onBeforeMount(async () => {
   <body class="w-full bg-sky-100 dark:bg-sky-100">
     <div class="px-30 py-10 mx-auto">
       <div class="text-2xl ml-20 font-bold dark:text-black mt-20">
+        All User
       </div>
     </div>
     <!-- Event empty -->
@@ -43,18 +40,18 @@ onBeforeMount(async () => {
       <p class="text-center text-lg mt-10">No Users</p>
     </div>
     <!--Show all users -->
-      <div>
+      <!-- <div>
         <UserList @showDetails="getUserDetails"  />
-      </div>
-      <div v-if="isModal">
-        <UserDetail :user="userDetail" @close="closeModal"/>
-      </div>  
-    <!-- <div class="flex px-20 grid grid-cols-3 content-center"> -->
+      </div> -->
+      <!-- <div v-if="isModal">
+        <UserDetail :users="userDetail" @close=""/>
+      </div>   -->
+    <div class="flex px-20 grid grid-cols-3 content-center">
       <!-- ทำ loop card เรียกใช้จาก db -->
-       <!-- <div v-for="user in users" :key="user">
+       <div v-for="user in users" :key="user">
         <UserList :users="user" />
       </div>     
-    </div> -->
+    </div>
   </body>
 </template>
  

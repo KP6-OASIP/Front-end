@@ -1,12 +1,15 @@
 import Home from '../views/Home.vue'
-import BookingEvent from '../views/BookingEvent.vue'
 import SchedEvents from '../views/ScheduledEvents.vue'
+import BookingEvent from '../views/BookingEvent.vue'
 import EventDetail from '../views/EventDetail.vue'
 import EditEvent from '../views/EditEvent.vue'
 import EditCategory from '../views/EditCategory.vue'
 import ClinicCategory from '../views/ClinicCategory.vue'
 import User from '../views/User.vue'
 import AddUser from '../views/AddUser.vue'
+import Test from '../views/Test.vue'
+import UserDetail from '../views/UserDetail.vue'
+import Login from '../views/Login.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const history = createWebHashHistory(import.meta.env.VITE_APP_TITLE)
@@ -17,14 +20,14 @@ const routes = [
     component: Home,
   },
   {
-    path: '/booking-event',
-    name: 'booking-event',
-    component: BookingEvent,
-  },
-  {
     path: '/sch-events',
     name: 'sch-events',
     component: SchedEvents,
+  },
+  {
+    path: '/booking-event',
+    name: 'booking-event',
+    component: BookingEvent,
   },
   {
     path: '/event-detail',
@@ -52,9 +55,24 @@ const routes = [
     component: User,
   },
   {
+    path: '/user-detail',
+    name: 'user-detail',
+    component: UserDetail,
+  },
+  {
     path: '/add-user',
     name: 'add-user',
     component: AddUser,
+  },
+  {
+    path: '/login-user',
+    name: 'login-user',
+    component: Login,
+  }, 
+  {
+    path: '/test',
+    name: 'test',
+    component: Test,
   }
 
   

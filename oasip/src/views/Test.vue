@@ -1,73 +1,80 @@
-<script setup>
-import { ref, computed, onBeforeMount } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import dayjs from 'dayjs'
+<!-- <script setup></script>
 
-const route = useRoute()
-const router = useRouter()
-const getUserDetails = ref({})
-
-const goBack = () => router.go(-1) // ให้กลับไปหน้าก่อนหน้า
-
-defineEmits(['close'])
-
-defineProps({
-  user: {
-    type: Object
-  }
-})
-</script>
- 
 <template>
-<!-- Main modal -->
-<div id="defaultModal" tabindex="-1" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    User Detail
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <ul  class="text-x">
-                  <li>
-          <span class="font-bold">Name :</span> {{ user.name }}
-        </li>
-        <li>
-          <span class="font-bold">Email :</span> {{ user.email }}
-        </li>
-        <li>
-          <span class="font-bold"> Role :</span>
-          {{ user.role }}
-        </li>
-        <li>
-          <span class="font-bold"> Created on :</span>
-          {{ dayjs(user.createOn) }}
-        </li>
-        <li>
-          <span class="font-bold">Updated on:</span>
-          {{ dayjs(user.updateOn)}}
-        </li>
-      </ul>
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                <button class="btn" @click="goBack">Close</button>
-            </div>
-        </div>
+  <body class="w-full bg-sky-100 dark:bg-sky-100 m-auto">
+    <div class="p-20">
+      <div class="card bg-base-100 shadow-xl m-auto p-20 w-6/12">
+        <form class="leading-loose flex flex-col gap-3 w-[100%]">
+          <div>
+            <p
+              class="font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
+            >
+              Name :
+            </p>
+            <input
+              placeholder=" Input your name"
+              v-model="name"
+              :maxlength="maxCountName"
+              :minlength="minCount"
+              class="bg-white border border-gray-300 text-black text-m focus:ring-0 w-[100%] rounded-lg"
+            />
+            <span
+              class="text-xs ml-[95%] text-gray-400"
+              :style="[name.length == 100 ? 'color:red' : '']"
+              >{{ minCount + name.length }}/{{ maxCountName }}</span
+            >
+          </div>
+          <div>
+            <p
+              class="font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
+            >
+              Email :
+            </p>
+            <input
+              placeholder=" Input your email"
+              type="email"
+              v-model="email"
+              :maxlength="maxCountmail"
+              :minlength="minCount"
+              class="peer bg-white border border-gray-300 text-black text-m focus:ring-0 w-[100%] rounded-lg"
+            />
+            <span
+              class="text-xs ml-[95%] text-gray-400"
+              :style="[email.length == 50 ? 'color:red' : '']"
+              >{{ minCount + email.length }}/{{ maxCountmail }}</span
+            >
+            <p
+              class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm"
+            >
+              Please provide a valid email address.
+            </p>
+          </div>
+          <p
+            class="font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
+          >
+            Role :
+          </p>
+          <select
+            v-model="role"
+            class="bg-white border border-gray-300 text-black text-m focus:ring-0 w-[100%] h-8 rounded-lg"
+          >
+            <option disabled value="">Select Role</option>
+            <option>student</option>
+            <option>admin</option>
+            <option>lecturer</option>
+          </select>
+          <div>
+            <button
+              class="text-white bg-pink-400 hover:bg-pink-600 focus:ring-0 focus:ring-pink-600 font-medium rounded-lg text-sm px-5 py-2.5"
+              @click="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
-
-
+  </body>
 </template>
- 
-<style>
 
-</style>
+<style></style> -->

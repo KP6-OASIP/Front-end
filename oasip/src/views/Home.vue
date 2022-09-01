@@ -26,7 +26,9 @@ onBeforeMount(async () => {
   <div
     class="w-full min-h-screen bg-gradient-to-bl from-sky-200 via-rose-200 to-cyan-100 items-center justify-center"
   >
-    <br />
+  &nbsp;
+    <!-- <br />
+    <br /> -->
     <div
       class="flex flex-wrap-reverse mt-20 gap-y-24 justify-between py-12 px-6 mx-auto max-w-screen-xl sm:px-8 md:px-12 lg:px-16 xl:px-24"
     >
