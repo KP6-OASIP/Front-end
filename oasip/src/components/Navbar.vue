@@ -101,18 +101,18 @@
                 </ul>
             </div>  
           </li>
-          <li>
+          <!-- <li>
             <router-link :to="{ name: 'test' }">
               <a
                 class="mt-3 text-base text-white xs:text-base sm:text-base md:text-base lg:text-base block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-rose-500 md:p-0 dark:text-white"
                 >Test</a
               >
             </router-link>
-          </li>
+          </li> -->
           <li>
             <router-link :to="{ name: 'login-user' }">
             <!-- Modal toggle -->
-            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 mt-1 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
               <span class="relative px-5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
               type="button" data-modal-toggle="authentication-modal">
               Login

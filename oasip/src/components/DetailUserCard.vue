@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onBeforeMount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-// import dayjs from 'dayjs'
+import dayjs from 'dayjs'
 const name = ref('')
 const email = ref('')
 const role = ref('')
@@ -106,15 +106,15 @@ const editUser = async () => {
         </li>
         <li>
           <span class="font-bold"> Created on :</span>
-          <!-- {{ dayjs(getUserDetails.createOn) }} -->
+          {{ dayjs(getUserDetails.createOn) }}
         </li>
         <li>
           <span class="font-bold">Update on :</span>
-          <!-- {{ dayjs(getUserDetails.updateOn) }} -->
+          {{ dayjs(getUserDetails.updateOn) }}
         </li>
       </ul>
       &nbsp;
-      <!-- v-on เพื่อ click แล้วไปทำ edit event func. -->
+      <!-- v-on เพื่อ click แล้วไปทำ edit user func. -->
       <div>
       <button
         type="button"
@@ -124,7 +124,7 @@ const editUser = async () => {
         Edit
       </button>
 
-      <!-- v-on เพื่อ click แล้วไปทำ remove event func. -->
+      <!-- v-on เพื่อ click แล้วไปทำ remove user func. -->
       <button
         type="button"
         @click="deleteUser"
@@ -156,22 +156,27 @@ const editUser = async () => {
         </li>
         <li>
           <span class="font-bold"> Created on :</span>
-          <!-- {{ dayjs(getUserDetails.createOn) }} -->
+          {{ dayjs(getUserDetails.createOn) }}
         </li>
         <li>
           <span class="font-bold">Update on :</span>
-          <!-- {{ dayjs(getUserDetails.updateOn) }} -->
+          {{ dayjs(getUserDetails.updateOn) }}
         </li>
       </ul>
       &nbsp;
-      <!-- v-on เพื่อ click แล้วไปทำ edit event func. -->
+      <!-- v-on เพื่อ click แล้วไปทำ edit user func. -->
       <div>
-      <button @click="edit" class="bg-red-700 hover:bg-gray-700 rounded-lg text-white font-bold py-2 px-8 border-grey-700 hover:border-grey-800">
-        cancel
+        <button 
+        class="text-white bg-pink-400 hover:bg-pink-600 focus:ring-0 focus:ring-pink-600 font-medium rounded-lg text-sm px-5 py-2.5"
+          @click="editUser" >
+        UPDATE
       </button>
-      <button @click="editUser" class="bg-yellow-500  hover:bg-gray-400 rounded-lg text-white font-bold py-2 px-10 border-gray-700 hover:border-gray-500">
-        submit
-      </button>
+      </div>
+      <div>
+      <button class="btn" @click="goBack">Cancel</button>     
+      <!-- <button @click="edit" class="bg-red-700 hover:bg-gray-700 rounded-lg text-white font-bold py-2 px-8 border-grey-700 hover:border-grey-800">
+        CANCEL
+      </button> -->
     </div>
     </div>
     </div>

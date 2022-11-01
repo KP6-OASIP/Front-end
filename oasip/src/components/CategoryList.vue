@@ -104,10 +104,10 @@ const editCat = (id) => {
                 :eventCategories="eventCategory"
               >
                 <!-- v-text เพื่อ show ข้อมูลที่กำหนด -->
-                <th scope="row" class="py-2 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" class="py-2 px-3 font-medium ">
                     {{ eventCategory.id }}
                 </th>
-                <td class="py-4 px-5">
+                <td class="py-4 px-5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ eventCategory.eventCategoryName }}
                 </td>
                 <td class="py-2 px-3">

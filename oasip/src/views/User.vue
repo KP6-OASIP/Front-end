@@ -15,7 +15,7 @@ const getUserDetails = (e) => {
 
 const getUsers = async () => {
   const res = await fetch(
-    `${import.meta.env.VITE_APP_TITLE}/api/users`
+    `/api/users`
   )
   if (res.status === 200) {
     users.value = await res.json()
