@@ -8,3 +8,5 @@ services:
       - './script:/docker-entrypoint-initdb.d/'
     ports:
       - '80:80'
+
+
