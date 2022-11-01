@@ -9,6 +9,7 @@ const maxCountName = 100; // ตัวแปรเพื่อบอกว่า
 const minCount = 0; // ตัวแปรเพื่อบอกจำนวนตัวอักษรของ name, notes
 const name = ref("");
 const maxCountmail = 50;
+const password = ref("")
 const email = ref("");
 const users = ref([]);
 const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
@@ -48,7 +49,7 @@ const props = defineProps({
 
 const getAllusers = async () => {
   const res = await fetch(userLink);
-  if (res.status === 201) {
+  if (res.status === 200) {
     users.value = await res.json();
   } else {
     console.log("can not get values");
@@ -57,7 +58,6 @@ const getAllusers = async () => {
 onBeforeMount(async () => {
   await getAllusers();
 });
-
 const addUsers = async () => {
   const res = await fetch(userLink, {
     method: "POST",
@@ -68,12 +68,14 @@ const addUsers = async () => {
       name: name.value,
       email: email.value,
       role: role.value,
+      password: password.value,
     }),
   });
-  if (res.status == 201) {
+  if (res.status == 200) {
     console.log("good status");
   } else console.log("bad status");
 };
+
 </script>
 
 <template>
@@ -98,6 +100,7 @@ const addUsers = async () => {
               :style="[name.length == 100 ? 'color:red' : '']"
               >{{ minCount + name.length }}/{{ maxCountName }}</span
             >
+            <p></p>
             <label
               for="floating_email"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 after:content-['*'] after:ml-0.5 after:text-red-500"
@@ -149,6 +152,7 @@ const addUsers = async () => {
           </div>
           <div class="relative z-0 mb-6 w-full group">
             <input
+              v-model="password"
               type="password"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
