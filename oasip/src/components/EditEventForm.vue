@@ -125,7 +125,7 @@ const updateEvent = async (id) => {
           class="text-white bg-pink-400 hover:bg-pink-600 focus:ring-0 focus:ring-pink-600 font-medium rounded-lg text-sm px-5 py-2.5"
           @click="updateEvent(getDetails.id)"
         >
-          Update
+          UPDATE
         </button>
         <button class="btn" @click="goBack">Cancel</button>
       </form>

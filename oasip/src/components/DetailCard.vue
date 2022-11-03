@@ -95,7 +95,7 @@ const removeEvent = async () => {
         @click="editEvent(getDetails.id)"
         class="bg-yellow-500 w-[100%] hover:bg-gray-400 rounded-lg text-white font-bold py-2 px-10 border-gray-700 hover:border-gray-500"
       >
-        Edit
+        EDIT
       </button>
 
       <!-- v-on เพื่อ click แล้วไปทำ remove event func. -->
@@ -104,7 +104,7 @@ const removeEvent = async () => {
         @click="removeEvent"
         class="bg-red-700 hover:bg-gray-700 rounded-lg text-white font-bold py-2 px-8 border-grey-700 hover:border-grey-800"
       >
-        Delete
+        DELETE
       </button>
 
       <!-- v-on เพื่อ click แล้วไปทำ go back func. -->
