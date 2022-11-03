@@ -4,11 +4,11 @@ import { computed, onBeforeMount, ref, defineAsyncComponent } from "vue";
 defineEmits(["addUser"]);
 const userName = ref("");
 const emailUser = ref("");
-const role = ref("");
 const maxCountName = 100; // ตัวแปรเพื่อบอกว่า name ใส่ได้สูงสุด 100 ตัว
 const minCount = 0; // ตัวแปรเพื่อบอกจำนวนตัวอักษรของ name, notes
-const name = ref("");
 const maxCountmail = 50;
+const name = ref("");
+const role = ref("");
 const password = ref("")
 const email = ref("");
 const users = ref([]);
@@ -38,6 +38,7 @@ const submit = () => {
   // console.log(name.value)
   // console.log(email.value)
   // console.log(role.value)
+  // console.log(password.value)
 };
 
 const props = defineProps({
@@ -71,10 +72,18 @@ const addUsers = async () => {
       password: password.value,
     }),
   });
-  if (res.status == 200) {
-    console.log("good status");
-  } else console.log("bad status");
+  if (res.status == 201) {
+    console.log('Add User Successfully')
+    alert('Add User Successfully')
+  } else  {
+  console.log('error, cannot create')
+  alert('Cannot add user, please check it again')
+  }
 };
+// if (res.status == 200) {
+//     console.log("good status");
+//   } else console.log("bad status");
+// };
 
 </script>
 
@@ -89,7 +98,7 @@ const addUsers = async () => {
               :maxlength="maxCountName"
               :minlength="minCount"
               type="text"
-              name="floating_email"
+ 
               id="floating_email"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
@@ -113,7 +122,7 @@ const addUsers = async () => {
               :maxlength="maxCountmail"
               :minlength="minCount"
               type="email"
-              name="floating_password"
+
               id="floating_password"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
@@ -154,7 +163,6 @@ const addUsers = async () => {
             <input
               v-model="password"
               type="password"
-              name="repeat_password"
               id="floating_repeat_password"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
@@ -169,7 +177,6 @@ const addUsers = async () => {
           <div class="relative z-0 mb-6 w-full group">
             <input
               type="password"
-              name="repeat_password"
               id="floating_repeat_password"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "

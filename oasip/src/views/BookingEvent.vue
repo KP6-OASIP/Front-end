@@ -5,12 +5,13 @@ import { useRoute, useRouter } from 'vue-router'
 const router = useRouter()
 const events = ref([])
 const eventCategories = ref([])
+
 const createNewEvent = async (newEvent) => {
   const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-    },
+    }, 
     body: JSON.stringify(newEvent),
   })
   if (res.status === 201) {

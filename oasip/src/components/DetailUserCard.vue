@@ -1,14 +1,16 @@
 <script setup>
 import { ref, computed, onBeforeMount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-// import dayjs from 'dayjs'
-const name = ref('')
-const email = ref('')
-const role = ref('')
+import dayjs from 'dayjs'
+const name = ref("");
+const email = ref("");
+const role = ref("");
+const password = ref("");
 const route = useRoute()
 const router = useRouter()
 const getUserDetails = ref({})
 const goBack = () => router.go(-1) // ให้กลับไปหน้าก่อนหน้า
+const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
 
 // defineProps({
 //   users: {
@@ -36,13 +38,14 @@ onBeforeMount(async () => {
 })
 
 // สร้างตัวแปร เพื่อเรียกใช้และส่งไปหน้าต่อไป ตาม id
-// const editUser = (id) => {
-//   console.log(id)
-//   router.push({
-//     name: 'edit-user',
-//     query: { id: id },
-//   })
-// }
+
+const edituser = (id) => {
+  console.log(id)
+  router.push({
+    name: 'edit-user',
+    query: { id: id },
+  })
+}
 
 // สร้างตัวแปรเพื่อเก็บ async func. เพื่อ fetch ไปติดต่อกับ data ที่ backend เพื่อลบข้อมูลตาม id โดยเมื้อลบสำเร็จให้กลับไปที่หน้าก่อนหน้า
 const deleteUser = async () => {
@@ -70,15 +73,21 @@ const editUser = async () => {
     headers: {
       "content-type": "application/json",
     },
-    // body: JSON.stringify({
-    //   name: name.value,
-    //   email: email.value,
-    //   role: role.value,
-    // }),
+    body: JSON.stringify({
+      name: name.value,
+      email: email.value,
+      role: role.value,
+      // password: password.value,
+    }),
   });
-  if (res.status == 201) {
-    console.log("good status");
-  } else console.log("bad status");
+  if (res.status == 200) {
+    console.log('Updated successfully')
+    alert('Updated successfully')
+    router.go(-1)
+  } else {
+    console.log('error, cannot be added')
+    alert('Can not update booking')
+  }
 };
 </script>
  
@@ -102,15 +111,16 @@ const editUser = async () => {
         </li>
         <li>
           <span class="font-bold"> Role :</span>
+          
           {{ getUserDetails.role }}
         </li>
         <li>
           <span class="font-bold"> Created on :</span>
-          <!-- {{ dayjs(getUserDetails.createOn) }} -->
+          {{ dayjs(getUserDetails.createOn) }}
         </li>
         <li>
           <span class="font-bold">Update on :</span>
-          <!-- {{ dayjs(getUserDetails.updateOn) }} -->
+          {{ dayjs(getUserDetails.updateOn) }}
         </li>
       </ul>
       &nbsp;
@@ -143,24 +153,33 @@ const editUser = async () => {
     <div v-if="isedit==true">
       <ul  class="text-x">
         <li>
-          <span class="font-bold">Name :</span> 
-          <input type="text" v-model="name"/> 
+          <span class="font-bold ">Name :</span> 
+          <input type="text" v-model="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"/> 
         </li>
         <li>
-          <span class="font-bold">Email :</span>
-          <input type="text" v-model="email"/> 
+          <span class="font-bold" >Email :</span>
+          <input type="text" v-model="email"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"/> 
         </li>
         <li>
           <span class="font-bold"> Role :</span>
-          <input type="text" v-model="role"/> 
+          <select
+              v-model="role"
+              id="floating_repeat_select"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer "
+            >
+              <option disabled value="">Select Role</option>
+              <option>student</option>
+              <option>admin</option>
+              <option>lecturer</option>
+            </select> 
         </li>
         <li>
           <span class="font-bold"> Created on :</span>
-          <!-- {{ dayjs(getUserDetails.createOn) }} -->
+          {{ dayjs(getUserDetails.createOn) }}
         </li>
         <li>
           <span class="font-bold">Update on :</span>
-          <!-- {{ dayjs(getUserDetails.updateOn) }} -->
+          {{ dayjs(getUserDetails.updateOn) }}
         </li>
       </ul>
       &nbsp;
