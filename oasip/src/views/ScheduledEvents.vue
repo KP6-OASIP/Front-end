@@ -6,9 +6,7 @@ const events = ref([])
 
 // getAllEvents
 const getEvents = async () => {
-  const res = await fetch(
-    `/api/events`
-  )
+  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`)
   if (res.status === 200) {
     events.value = await res.json()
   } else {
