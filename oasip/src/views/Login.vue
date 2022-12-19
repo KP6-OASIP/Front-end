@@ -1,33 +1,48 @@
 <script setup>
-// import { computed, onBeforeMount, ref, defineAsyncComponent } from "vue";
-// const name = ref("");
+import { computed, onBeforeMount, ref, defineAsyncComponent } from "vue";
+const password = ref("");
+const email = ref("");
+const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
+const matchLink =`${import.meta.env.VITE_APP_TITLE}api/login` 
 
-// const getAllusers = async () => {
-//   const res = await fetch(userLink);
-//   if (res.status === 201) {
-//     users.value = await res.json();
-//   } else {
-//     console.log("can not get values");
-//   }
-// };
-// onBeforeMount(async () => {
-//   await getAllusers();
-// });
+const sendd =async ()=>{
+    const res = await fetch(matchLink, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+     email:email.value,
+     password:passwordd.value
+    })
+  });if(res.status==200){
+    console.log("sign in successful")
+    check_200.value=true
+    token.value=await res.json()
+  } 
+}
 
-// const addUsers = async () => {
-//   const res = await fetch(userLink, {
-//     method: "POST",
-//     headers: {
-//       "content-type": " ",
-//     },
-//     body: JSON.stringify({
-      
-//     }),
-//   });
-//   if (res.status == 201) {
-//     console.log("good status");
-//   } else console.log("bad status");
-// };
+// validate
+const checkEMailN=ref(false)
+const checkPasswordN=ref(false)
+// submit
+const submitt =()=>{
+    // check email null
+    if(eMail.value.length==0){
+        checkEMailN.value=true
+        console.log("e-mail is null")
+    }else checkEMailN.value=false
+        // check password null
+    if(passwordd.value.length==0){
+        checkPasswordN.value=true
+        console.log("password is null")
+    }else checkPasswordN.value=false
+
+    if(checkEMailN.value==false&&checkPasswordN.value==false){
+        console.log("get in last check")
+        sendd()
+    }
+}
 </script>
  
 <template>
@@ -42,11 +57,9 @@
                 <form class="space-y-3" action="#">
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
                     <div class="flex justify-between">
                         <div class="flex items-start">
