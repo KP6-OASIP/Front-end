@@ -5,8 +5,6 @@ console.clear();
 
 const router = useRouter()
 
-let token = localStorage.getItem('token')
-let accountRole = localStorage.getItem('role')
 
 defineProps({
   eventCategories: {
@@ -22,7 +20,6 @@ const getEventCategories = async () => {
   const res = await fetch(
     `${import.meta.env.VITE_APP_TITLE}/api/eventCategories` , {
     headers: {
-      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
     },
   }
@@ -46,7 +43,6 @@ const editEventCategory = async (updateEventCategory) => {
     {
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${token}`,
         "content-type": "application/json",
       },
       body: JSON.stringify({
