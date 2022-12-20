@@ -53,7 +53,7 @@ onBeforeMount(async () => {
 // สร้างตัวแปรเพื่อเก็บ async func. เพื่อ fetch ไปติดต่อกับ data ที่ backend เพื่อทำ method put และถ้าติดต่อไม่ได้ให้แสดง error
 const updateEvent = async (id) => {
   const res = await fetch(
-    `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`,
+    `/api/events/${id}`,
     {
       method: 'PUT',
       headers: {

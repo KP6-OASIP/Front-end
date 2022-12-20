@@ -6,7 +6,7 @@ const myRouter = useRouter()
 
 let token = ref(localStorage.getItem('token'))
 let accountRole = ref(localStorage.getItem('role'))
-console.log(token.value)
+
 
 const signout = () => {
   localStorage.clear();

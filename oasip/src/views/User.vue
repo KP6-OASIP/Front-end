@@ -14,7 +14,7 @@ const getUserDetails = (e) => {
 }
 
 const getUsers = async () => {
-  const res = await fetch( `${import.meta.env.VITE_APP_TITLE}/api/users`, {
+  const res = await fetch( `/api/users`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"

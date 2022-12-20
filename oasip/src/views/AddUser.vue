@@ -12,7 +12,7 @@ const role = ref("");
 const password = ref("")
 const email = ref("");
 const users = ref([]);
-const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
+const userLink = `/api/users`;
 
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')

@@ -18,7 +18,7 @@ const getEventById = async (id) => {
   if (route.query.id) {
     const id = route.query.id;
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`,
+      `/api/events/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -51,7 +51,7 @@ const editEvent = (id) => {
 const removeEvent = async () => {
   if (confirm("Would you like to cancel your appointment?") == true) {
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/events/${route.query.id}`,
+      `/api/events/${route.query.id}`,
       {
         method: "DELETE",
       }

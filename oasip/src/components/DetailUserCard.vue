@@ -10,7 +10,7 @@ const route = useRoute()
 const router = useRouter()
 const getUserDetails = ref({})
 const goBack = () => router.go(-1) // ให้กลับไปหน้าก่อนหน้า
-const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
+// const userLink = `/api/users/${id}`;
 
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')
@@ -26,17 +26,22 @@ const getUsersById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/users/${id}`,
+      `/api/users/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       }
+
+
     )
     if (res.status === 200) {
       const data = await res.json()
       getUserDetails.value = data
+      name.value = getUserDetails.value.name
+      email.value = getUserDetails.value.email
+      role.value = getUserDetails.value.role
     } else {
       console.log('can not get values')
     }
@@ -60,7 +65,7 @@ const edituser = (id) => {
 const deleteUser = async () => {
   if (confirm('Are you sure you want to delete ?') == true) {
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/users/${route.query.id}`,
+      `/api/users/${route.query.id}`,
       {
         method: 'DELETE',
         headers: {
@@ -81,7 +86,7 @@ const edit = () => {
 }
 
 const editUser = async () => {
-  const res = await fetch(userLink, {
+  const res = await fetch(`/api/users/${route.query.id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
