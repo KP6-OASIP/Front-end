@@ -5,6 +5,9 @@ console.clear();
 
 const router = useRouter()
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 defineProps({
   eventCategories: {
     type: Array,
@@ -17,7 +20,12 @@ const eventCategories = ref([]);
 // สร้างตัวแปรเพื่อเก็บ async func. เพื่อ fetch ไปติดต่อกับ data ที่ backend เพื่อรับค่า event categories และถ้าติดต่อไม่ได้ให้แสดง error
 const getEventCategories = async () => {
   const res = await fetch(
-    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`
+    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories` , {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+  }
   );
   if (res.status === 200) {
     eventCategories.value = await res.json();
@@ -38,6 +46,7 @@ const editEventCategory = async (updateEventCategory) => {
     {
       method: "PUT",
       headers: {
+        Authorization: `Bearer ${token}`,
         "content-type": "application/json",
       },
       body: JSON.stringify({

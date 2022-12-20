@@ -19,13 +19,21 @@ const duration = ref('')
 
 const goBack = () => router.go(-1)
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 
 // สร้างตัวแปรเพื่อเก็บ async func. เพื่อ fetch ไปติดต่อกับ data ที่ backend และถ้าติดต่อไม่ได้ให้แสดง error
 const getEventCategoryById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/eventCategories/${id}`
+      `${import.meta.env.VITE_APP_TITLE}/api/eventCategories/${id}` , {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+  }
     )
     if (res.status === 200) {
       const data = await res.json()
@@ -48,6 +56,7 @@ const updateEventCategory = async (id) => {
     {
       method: 'PUT',
       headers: {
+        Authorization: `Bearer ${token}`,
         'content-type': 'application/json',
       },
       body: JSON.stringify({

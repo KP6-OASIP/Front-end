@@ -12,6 +12,9 @@ const getUserDetails = ref({})
 const goBack = () => router.go(-1) // ให้กลับไปหน้าก่อนหน้า
 const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 // defineProps({
 //   users: {
 //     type: Array,
@@ -23,7 +26,13 @@ const getUsersById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/users/${id}`
+      `${import.meta.env.VITE_APP_TITLE}/api/users/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
     )
     if (res.status === 200) {
       const data = await res.json()
@@ -54,6 +63,10 @@ const deleteUser = async () => {
       `${import.meta.env.VITE_APP_TITLE}/api/users/${route.query.id}`,
       {
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       }
     )
     router.go(-1)
@@ -71,6 +84,7 @@ const editUser = async () => {
   const res = await fetch(userLink, {
     method: "PUT",
     headers: {
+      Authorization: `Bearer ${token}`,
       "content-type": "application/json",
     },
     body: JSON.stringify({

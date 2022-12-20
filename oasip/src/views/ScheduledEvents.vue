@@ -4,9 +4,20 @@ import EventCard from '../components/EventCard.vue'
 
 const events = ref([])
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 // getAllEvents
 const getEvents = async () => {
-  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`)
+  const res = await fetch(
+    `/api/events`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+  )
   if (res.status === 200) {
     events.value = await res.json()
   } else {

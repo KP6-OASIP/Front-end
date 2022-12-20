@@ -7,7 +7,6 @@ import EditCategory from '../views/EditCategory.vue'
 import ClinicCategory from '../views/ClinicCategory.vue'
 import User from '../views/User.vue'
 import AddUser from '../views/AddUser.vue'
-import Test from '../views/Test.vue'
 import UserDetail from '../views/UserDetail.vue'
 import Login from '../views/Login.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
@@ -69,11 +68,7 @@ const routes = [
     name: 'login-user',
     component: Login,
   }, 
-  {
-    path: '/test',
-    name: 'test',
-    component: Test,
-  },
+  
   
   
 ]

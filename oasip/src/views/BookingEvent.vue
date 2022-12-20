@@ -6,6 +6,9 @@ const router = useRouter()
 const events = ref([])
 const eventCategories = ref([])
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 const createNewEvent = async (newEvent) => {
   const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`, {
     method: 'POST',
@@ -28,7 +31,13 @@ const createNewEvent = async (newEvent) => {
 // // getAllEvents
 const getEventCategories = async () => {
   const res = await fetch(
-    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`
+    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
   )
   if (res.status === 200) {
     eventCategories.value = await res.json()
@@ -37,7 +46,13 @@ const getEventCategories = async () => {
   }
 }
 const getEvents = async () => {
-  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`)
+  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
   if (res.status === 200) {
     events.value = await res.json()
   } else console.log('Error, cannot get data')

@@ -17,6 +17,9 @@ const minCount = 0
 const notes = ref('')
 const startTime = ref('')
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 
 const goBack = () => router.go(-1)
 const currentTime = dayjs().format('YYYY-MM-DDTHH:mm')
@@ -26,7 +29,12 @@ const getEventById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`
+      `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+  }
     )
     if (res.status === 200) {
       const data = await res.json()
@@ -49,6 +57,7 @@ const updateEvent = async (id) => {
     {
       method: 'PUT',
       headers: {
+        Authorization: `Bearer ${token}`,
         'content-type': 'application/json',
       },
       body: JSON.stringify({

@@ -14,6 +14,9 @@ const email = ref("");
 const users = ref([]);
 const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 //validate
 const checkNameN = ref(undefined);
 const checkEmailN = ref(undefined);
@@ -49,20 +52,28 @@ const props = defineProps({
 });
 
 const getAllusers = async () => {
-  const res = await fetch(userLink);
-  if (res.status === 200) {
+  const res = await fetch(userLink, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+  });
+  if (res.status === 201) {
     users.value = await res.json();
   } else {
     console.log("can not get values");
   }
 };
+
 onBeforeMount(async () => {
   await getAllusers();
 });
+
 const addUsers = async () => {
   const res = await fetch(userLink, {
     method: "POST",
     headers: {
+       Authorization: `Bearer ${token}`,
       "content-type": "application/json",
     },
     body: JSON.stringify({

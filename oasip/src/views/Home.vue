@@ -6,10 +6,19 @@ const sidebarOpen = ref(false)
 
 const events = ref([])
 
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
 // getAllEvents
 const getEvents = async () => {
   const res = await fetch(
-    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`
+    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
   )
   if (res.status === 200) {
     events.value = await res.json()

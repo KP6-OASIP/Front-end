@@ -11,6 +11,9 @@ const minCount = 0 // ตัวแปรเพื่อบอกจำนวน�
 const name = ref('')
 const maxCountNotes = 500 // ตัวแปรเพื่อบอกว่า notes ใส่ได้สูงสุด 500 ตัว
 const notes = ref('')
+
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
 // 
 const props = defineProps({
   events: {
