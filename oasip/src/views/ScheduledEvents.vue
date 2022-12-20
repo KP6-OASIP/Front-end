@@ -10,7 +10,7 @@ let accountRole = localStorage.getItem('role')
 // getAllEvents
 const getEvents = async () => {
   const res = await fetch(
-    `/api/events`,
+    `${import.meta.env.VITE_APP_TITLE}/api/events`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
