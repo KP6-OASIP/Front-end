@@ -2,12 +2,19 @@
 import { ref, onBeforeMount } from 'vue'
 import BookingForm from '../components/BookingForm.vue'
 import { useRoute, useRouter } from 'vue-router'
+const appRouter = useRouter();
 const router = useRouter()
 const events = ref([])
 const eventCategories = ref([])
 
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')
+
+const checkUserRole = () => {
+    if (accountRole == 'lecturer') {
+        appRouter.push({ name: "Home" })
+    }
+}
 
 const createNewEvent = async (newEvent) => {
   const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`, {
@@ -31,7 +38,7 @@ const createNewEvent = async (newEvent) => {
 // // getAllEvents
 const getEventCategories = async () => {
   const res = await fetch(
-    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`,
+    `/api/eventCategories`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -46,7 +53,7 @@ const getEventCategories = async () => {
   }
 }
 const getEvents = async () => {
-  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`,
+  const res = await fetch(`/api/events`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,6 +65,7 @@ const getEvents = async () => {
   } else console.log('Error, cannot get data')
 }
 onBeforeMount(async () => {
+  checkUserRole()
   await getEvents()
   await getEventCategories()
 })

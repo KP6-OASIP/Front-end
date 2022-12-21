@@ -29,7 +29,7 @@ const getEventById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
     const res = await fetch(
-      `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`, {
+      `/api/events/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
@@ -39,7 +39,12 @@ const getEventById = async (id) => {
     if (res.status === 200) {
       const data = await res.json()
       getDetails.value = data
-      notes.value = getDetails.value.eventNotes
+      
+      if (getDetails.value.eventNotes == null) {
+        notes.value = " "
+      } else {
+        notes.value = getDetails.value.eventNotes
+      }
       startTime.value = new Date(getDetails.value.eventStartTime)
     } else {
       console.log('cannot get values')

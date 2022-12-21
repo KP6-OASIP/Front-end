@@ -1,11 +1,23 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
 import EventCard from '../components/EventCard.vue'
+import { useRouter } from 'vue-router';
+const appRouter = useRouter();
 
 const events = ref([])
 
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')
+
+const checkUserRole = () => {
+    if (token == '' || token == null || token == ' ') {
+        appRouter.push({ name: "Home" })
+    }
+}
+
+onBeforeMount(async () => {
+  checkTokenAndUserRole();
+})
 
 // getAllEvents
 const getEvents = async () => {

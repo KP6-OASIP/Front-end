@@ -1,5 +1,19 @@
 <script setup>
 import EditEventForm from '../components/EditEventForm.vue'
+import { useRouter } from 'vue-router';
+const appRouter = useRouter();
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem('role')
+
+const checkUserRole = () => {
+    if (accountRole == 'lecturer' || token == '' || token == null || token == ' ') {
+        appRouter.push({ name: "Home" })
+    }
+}
+
+onBeforeMount(async () => {
+  checkUserRole();
+})
 </script>
 
 <template>

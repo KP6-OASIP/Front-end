@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onBeforeMount, ref, defineAsyncComponent } from "vue";
-
+import { useRouter } from 'vue-router';
+const appRouter = useRouter();
 defineEmits(["addUser"]);
 const userName = ref("");
 const emailUser = ref("");
@@ -16,6 +17,12 @@ const userLink = `/api/users`;
 
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')
+
+const checkUserRole = () => {
+    if (accountRole !== 'admin' || token == "" || token == null) {
+        appRouter.push({ name: "Home" })
+    }
+}
 
 //validate
 const checkNameN = ref(undefined);
@@ -35,6 +42,7 @@ const submit = () => {
 
   //last check
   if (checkNameN.value == false && checkEmailN.value == false) {
+    console.log(name.value + " | "+ email.value + " | "+  role.value + " | "+  password.value)
     addUsers();
     console.log("last check");
   }
@@ -66,11 +74,12 @@ const getAllusers = async () => {
 };
 
 onBeforeMount(async () => {
+  checkUserRole();
   await getAllusers();
 });
 
 const addUsers = async () => {
-  const res = await fetch(userLink, {
+  const res = await fetch(`/api/users`, {
     method: "POST",
     headers: {
        Authorization: `Bearer ${token}`,
@@ -201,7 +210,7 @@ const addUsers = async () => {
           <button
             type="submit"
             class="text-white bg-pink-400 hover:bg-pink-600 focus:ring-0 focus:ring-pink-600 font-medium rounded-lg text-sm px-5 py-2.5"
-            @click="submit"
+            @click="submit()"
           >
             Submit
           </button>

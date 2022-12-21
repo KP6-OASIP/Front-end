@@ -2,11 +2,25 @@
 import { ref, onBeforeMount } from 'vue'
 import UserList from '../components/UserListCard.vue'
 
-let token = localStorage.getItem('token')
+import { useRouter } from 'vue-router';
+const appRouter = useRouter();
 
 const users = ref([])
 const userDetail = ref({})
 const isModal = ref(false)
+
+let token = localStorage.getItem('token')
+let accountRole = localStorage.getItem("role")
+
+const checkTokenAndUserRole = () => {
+  if (token == "" || token == null ) {
+    alert('กรุณาเข้าสู่ระบบก่อนใช้งาน');
+    appRouter.push({name: "Login"})
+  } else if (accountRole !== 'admin') {
+    alert('คุณไม่มีสิทธิ์ใช้งานหน้านี้')
+    appRouter.push({name: "Home"})
+  }
+}
 
 const getUserDetails = (e) => {
   userDetail.value = e
@@ -28,6 +42,7 @@ const getUsers = async () => {
   }
 }
 onBeforeMount(async () => {
+  checkTokenAndUserRole();
   await getUsers()
 })
 </script>
