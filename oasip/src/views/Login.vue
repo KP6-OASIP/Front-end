@@ -84,7 +84,7 @@ const submitt = () => {
 
 <template>
     <div class="p-20">
-        <div class="card bg-base-100 shadow-xl m-auto p-4 w-4/12 mt-10">
+        <div class="card bg-base-300 shadow-xl m-auto p-4 w-4/12 mt-10">
 
             <form class="leading-loose flex flex-col gap-3 w-[100%]">
 

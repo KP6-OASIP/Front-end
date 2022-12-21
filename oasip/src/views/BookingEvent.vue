@@ -17,7 +17,7 @@ const checkUserRole = () => {
 }
 
 const createNewEvent = async (newEvent) => {
-  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`, {
+  const res = await fetch(`/api/events`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

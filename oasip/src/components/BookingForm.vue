@@ -32,7 +32,7 @@ const props = defineProps({
     <div class="card lg:card-side bg-base-100 shadow-xl m-auto p-20 w-7/12">
       <form class="leading-loose flex flex-col gap-3 w-[100%]">
         <div>
-          <h2 class="font-bold text-2xl">Booking Form</h2>
+          <h2 class="font-bold text-2xl">Booking Events</h2>
 
           <label class="block">
             <p class="font-bold">Profile :</p>

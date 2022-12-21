@@ -54,6 +54,10 @@ const removeEvent = async () => {
       `/api/events/${route.query.id}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       }
     );
     router.go(-1);
@@ -139,17 +143,7 @@ const removeEvent = async () => {
       <button
         type="button"
         @click="removeEvent"
-        class="
-          bg-red-700
-          hover:bg-gray-700
-          rounded-lg
-          text-white
-          font-bold
-          py-2
-          px-8
-          border-grey-700
-          hover:border-grey-800
-        "
+        class="bg-red-700 w-[100%] hover:bg-gray-400 rounded-lg text-white font-bold py-2 px-10 border-gray-700 hover:border-gray-500"
       >
         DELETE
       </button>

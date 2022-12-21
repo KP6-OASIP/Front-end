@@ -56,7 +56,7 @@ onBeforeMount(async () => {
     </div>
     <!-- Event empty -->
     <div v-if="users.length === 0">
-      <p class="text-center text-lg mt-10">No Users</p>
+      <p class="text-center text-lg mt-10">คุณไม่มีสิทธิ์ใช้งานหน้านี้</p>
     </div>
     <!--Show all users -->
       <!-- <div>

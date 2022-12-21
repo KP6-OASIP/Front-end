@@ -1,6 +1,7 @@
 <script setup>
 import EditEventForm from '../components/EditEventForm.vue'
 import { useRouter } from 'vue-router';
+import { onBeforeMount } from 'vue';
 const appRouter = useRouter();
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')

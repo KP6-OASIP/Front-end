@@ -7,7 +7,7 @@ const sidebarOpen = ref(false)
 const events = ref([])
 
 let token = localStorage.getItem('token')
-let accountRole = localStorage.getItem('role')
+let accountRole = ref(localStorage.getItem('role'))
 
 // getAllEvents
 const getEvents = async () => {
@@ -58,12 +58,14 @@ onBeforeMount(async () => {
           เว็บไซต์การนัดหมาย
         </p>
         <div class="flex pt-8 space-x-4 sm:space-x-6">
+          <li v-if="accountRole != 'lecturer'">
           <router-link :to="{ name: 'booking-event' }">
             <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 
             dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-md px-10 py-2.5 text-center mr-2 mb-2">
             Booking</button>
             </router-link
           >
+          </li>
         </div>
       </div>
       <div class="relative md:w-1/2 w-full flex flex-col justify-between">
