@@ -41,7 +41,7 @@ const getEventCategories = async () => {
     `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       }

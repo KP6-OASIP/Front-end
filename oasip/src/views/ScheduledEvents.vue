@@ -81,6 +81,7 @@ const reset = () => {
 </script>
 
 <template>
+
   <body class="w-full bg-sky-100 dark:bg-sky-100">
     <div class="px-30 pt-10 pb-5 mx-auto"></div>
     <div class="px-30 py-10 mx-auto">
@@ -90,9 +91,7 @@ const reset = () => {
       <div class="flex w-fit ml-20 mt-5 ">
         <!-- cat -->
 
-        <select
-          v-model="fcategory"
-          class="
+        <select v-model="fcategory" class="
             flex-shrink-0
             z-10
             inline-flex
@@ -110,8 +109,7 @@ const reset = () => {
             h-10
             w-52
             pb-0.5
-          "
-        >
+          ">
           <option value="" disabled>Select your clinic</option>
           <option value="Back-End Clinic">Back-End clinic</option>
           <option value="Front-End Clinic">Front-End clinic</option>
@@ -125,11 +123,7 @@ const reset = () => {
 
         <!-- eamil -->
         <div class="relative w-full">
-          <input
-            v-model="feamil"
-            type="search"
-            id="search-dropdown"
-            class="
+          <input v-model="feamil" type="search" id="search-dropdown" class="
               block
               p-2.5
               w-full
@@ -147,13 +141,8 @@ const reset = () => {
               dark:focus:border-blue-500
               box-content
               w-52
-            "
-            placeholder="Input your email"
-          />
-          <button
-            @click="filter"
-            type="submit"
-            class="
+            " placeholder="Input your email" />
+          <button @click="filter" type="submit" class="
               absolute
               top-0
               right-0
@@ -165,29 +154,16 @@ const reset = () => {
               rounded-r-lg
               border border-blue-700
               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
-            "
-          >
-            <svg
-              aria-hidden="true"
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
+            ">
+            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </button>
         </div>
-        
-        <button
-          @click="reset"
-          class="
+
+        <button @click="reset" class="
             text-white
             bg-pink-600
             hover:bg-pink-500
@@ -203,11 +179,12 @@ const reset = () => {
           "
         >
           RESET
+
         </button>
       </div>
     </div>
 
-    
+
     <!-- Event empty -->
     <div v-if="events.length === 0">
       <p class="text-center text-lg mt-10">Your role do not have a permission to see details.</p>
@@ -222,4 +199,6 @@ const reset = () => {
   </body>
 </template>
 
-<style></style>
+<style>
+
+</style>
