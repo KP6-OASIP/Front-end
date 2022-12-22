@@ -25,7 +25,7 @@ const showDet = (id) => {
     <!-- <div
         class="card card-side max-w-ml bg-white rounded-lg border border-gray-200 p-10 shadow-md hover:bg-gray-100 hover:ring-gray-100 dark:bg-gray-800 dark:border-gray-700 text-kanit cursor-pointer"
       > -->
-    <div
+    <div 
       class="
         card card-side
         m-4
@@ -48,7 +48,7 @@ const showDet = (id) => {
       <figure>
         <img class="shrink-0 mb-14 w-20 rounded-full" src="/02-2.png" alt="1" />
       </figure>
-      <div class="card-body">
+      <div  class="card-body">
         <h5 class="mb-1 text-left font-kanit text-gray-900 dark:text-white">
           <div class="ltr:ml-3">
             <p class="font-bold text-2xl">
@@ -79,7 +79,7 @@ const showDet = (id) => {
                 mt-3
               "
             >
-              {{ events.eventCategory.eventCategoryName }}
+              {{ events.eventCategoryID.eventCategoryName}}
             </div>
           </div>
           <br />
