@@ -83,10 +83,10 @@ const addUsers = async () => {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      name: name.value,
-      email: email.value,
-      role: role.value,
-      password: password.value,
+      name: name.value.trim(),
+      email: email.value.trim(),
+      role: role.value.trim(),
+      password: password.value.trim(),
     }),
   });
   if (res.status == 201) {

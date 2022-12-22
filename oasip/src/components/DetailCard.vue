@@ -103,7 +103,7 @@ const removeEvent = async () => {
         </li>
         <li>
           <span class="font-bold">Category :</span>
-          {{ getDetails.eventCategory?.eventCategoryName }}
+          {{ getDetails.eventCategoryID?.eventCategoryName }}
         </li>
         <li
           v-if="
