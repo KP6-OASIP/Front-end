@@ -25,7 +25,7 @@ onBeforeMount(async () => {
 
 // getAllEvents
 const getEvents = async () => {
-  const res = await fetch(`/api/events`, {
+  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const getEvents = async () => {
     events.value = await res.json();
     fevents.value = events.value;
   } else {
-    console.log("can not get values");
+    console.log("can not get events");
   }
 };
 onBeforeMount(async () => {
@@ -202,7 +202,7 @@ const reset = () => {
             ml-1.5
           "
         >
-          Reset
+          RESET
         </button>
       </div>
     </div>
@@ -210,7 +210,7 @@ const reset = () => {
     
     <!-- Event empty -->
     <div v-if="events.length === 0">
-      <p class="text-center text-lg mt-10">No Scheduled Events</p>
+      <p class="text-center text-lg mt-10">Your role do not have a permission to see details.</p>
     </div>
     <!--Show event -->
     <div class="flex px-20 grid grid-cols-3 content-center">

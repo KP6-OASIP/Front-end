@@ -72,8 +72,8 @@ const updateEventCategory = async (id) => {
     alert('Updated successfully')
     router.go(-1)
   } else {
-    console.log('error, cannot be added')
-    alert('Can not update booking')
+    console.log('error, cannot updated')
+    alert('Can not updated an event category')
   }
 }
 </script>
@@ -86,12 +86,12 @@ const updateEventCategory = async (id) => {
           <h2 class="font-bold text-2xl">Edit category form</h2>
           <ul class="text-x">
             <li>
-              <span class="font-bold">Category Name :</span> {{ getCategory.eventCategoryName }}
+              <span class="font-bold"><b> Name: </b></span> {{ getCategory.eventCategoryName }}
             </li>
           </ul>
 
           <div>
-            <p class="font-bold">Description :</p>
+            <p class="font-bold"><b>Description:</b></p>
             <textarea
               v-model="desc"
               placeholder=" Input your description"
@@ -105,7 +105,7 @@ const updateEventCategory = async (id) => {
               >{{ minCount + desc.length }}/{{ maxCountDesc }}</span
             >
           </div>
-          <p class="font-bold">Duration :</p>
+          <p class="font-bold"><b>Duration:</b></p>
 
           <input
            class="bg-white border border-gray-300 text-black text-m focus:ring-0 w-[100%] h-8 rounded-lg"
@@ -120,9 +120,9 @@ const updateEventCategory = async (id) => {
           class="text-white bg-pink-400 hover:bg-pink-600 focus:ring-0 focus:ring-pink-600 font-medium rounded-lg text-sm px-5 py-2.5"
           @click="updateEventCategory(getCategory.id)"
         >
-          Update
+          UPDATE
         </button>
-        <button class="btn" @click="goBack">Cancel</button>
+        <button class="btn" @click="goBack">CANCEL</button>
       </form>
     </div>
   </div>

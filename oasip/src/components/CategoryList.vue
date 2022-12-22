@@ -27,7 +27,7 @@ const getEventCategories = async () => {
   if (res.status === 200) {
     eventCategories.value = await res.json();
   } else {
-    console.log("can not get values");
+    console.log("can not get an event categories");
   }
 };
 onBeforeMount(async () => {
@@ -86,7 +86,7 @@ const editCat = (id) => {
               m-auto
             "
           >
-            Clinic Category List
+            Clinic Categories List
           </div>
     <table class=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -125,7 +125,7 @@ const editCat = (id) => {
                 </td>
                 <td class="py-2 px-3">
                     <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    @click="editCat(eventCategory.id)">Edit</button>
+                    @click="editCat(eventCategory.id)">EDIT</button>
                 </td>
               </tr>
             </tbody>

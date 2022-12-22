@@ -14,7 +14,7 @@ const notes = ref('')
 
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')
-// 
+//
 const props = defineProps({
   events: {
     type: Array,
@@ -30,6 +30,7 @@ const props = defineProps({
 <template>
   <div>
     <div class="card lg:card-side bg-base-100 shadow-xl m-auto p-20 w-7/12">
+      <p>*</p>
       <form class="leading-loose flex flex-col gap-3 w-[100%]">
         <div>
           <h2 class="font-bold text-2xl">Booking Events</h2>
@@ -124,10 +125,11 @@ const props = defineProps({
             ><p
               class="font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
             >
-              Choose a time for your appointment :
+              Choose a time slot for your appointment :
             </p></label
           >
-          <input class="rounded-lg"
+          <input
+            class="rounded-lg"
             v-model="startTime"
             type="datetime-local"
             id="meeting-time"
@@ -148,7 +150,7 @@ const props = defineProps({
             })
           "
         >
-          Booking
+          BOOK NOW
         </button>
       </form>
     </div>

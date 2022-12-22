@@ -13,7 +13,7 @@ const role = ref("");
 const password = ref("")
 const email = ref("");
 const users = ref([]);
-const userLink = `/api/users`;
+const userLink = `${import.meta.env.VITE_APP_TITLE}/api/users`;
 
 let token = localStorage.getItem('token')
 let accountRole = localStorage.getItem('role')
@@ -43,7 +43,7 @@ const submit = () => {
 
   //last check
   if (checkNameN.value == false && checkEmailN.value == false) {
-    console.log(name.value + " | " + email.value + " | " + role.value + " | " + password.value)
+    console.log("Name: " + name.value + " | " + "E-mail: " + email.value + " | " + "Role: " + role.value)
     addUsers();
     console.log("last check");
   }
@@ -66,7 +66,7 @@ const getAllusers = async () => {
   if (res.status === 201) {
     users.value = await res.json();
   } else {
-    console.log("can not get values");
+    console.log("Can not get all users");
   }
 };
 
@@ -76,7 +76,7 @@ onBeforeMount(async () => {
 });
 
 const addUsers = async () => {
-  const res = await fetch(`/api/users`, {
+  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/users`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -90,11 +90,11 @@ const addUsers = async () => {
     }),
   });
   if (res.status == 201) {
-    console.log('Add User Successfully')
-    alert('Add User Successfully')
+    console.log('Add a new user successfully')
+    alert('Add a new user successfully')
   } else {
-    console.log('error, cannot create')
-    alert('Cannot add user, please check it again')
+    console.log('error, cannot added')
+    alert('Can not add a new user, please check it again')
   }
 };
 // if (res.status == 200) {
@@ -168,7 +168,7 @@ const addUsers = async () => {
           </button>
         </form>
         <div v-else>
-          <p class="text-center text-lg mt-10">คุณไม่มีสิทธิ์ใช้งานหน้านี้</p>
+          <p class="text-center text-lg mt-10">Your role do not have a permission to see details.</p>
         </div>
       </div>
 

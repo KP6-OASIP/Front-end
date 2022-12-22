@@ -14,10 +14,10 @@ let accountRole = localStorage.getItem("role")
 
 const checkTokenAndUserRole = () => {
   if (token == "" || token == null ) {
-    alert('กรุณาเข้าสู่ระบบก่อนใช้งาน');
+    alert('Please, Sign in first.');
     appRouter.push({name: "Login"})
   } else if (accountRole !== 'admin') {
-    alert('คุณไม่มีสิทธิ์ใช้งานหน้านี้')
+    alert('Sign in successful')
     appRouter.push({name: "Home"})
   }
 }
@@ -28,7 +28,7 @@ const getUserDetails = (e) => {
 }
 
 const getUsers = async () => {
-  const res = await fetch( `/api/users`, {
+  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/users`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
@@ -38,7 +38,7 @@ const getUsers = async () => {
   if (res.status === 200) {
     users.value = await res.json()
   } else {
-    console.log('can not get values')
+    console.log('can not get all users')
   }
 }
 onBeforeMount(async () => {
@@ -56,7 +56,7 @@ onBeforeMount(async () => {
     </div>
     <!-- Event empty -->
     <div v-if="users.length === 0">
-      <p class="text-center text-lg mt-10">คุณไม่มีสิทธิ์ใช้งานหน้านี้</p>
+      <p class="text-center text-lg mt-10">Your role do not have a permission to see details.</p>
     </div>
     <!--Show all users -->
       <!-- <div>

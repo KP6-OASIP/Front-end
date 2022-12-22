@@ -29,7 +29,7 @@ const getEventById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
     const res = await fetch(
-      `/api/events/${id}`, {
+      `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
@@ -47,7 +47,7 @@ const getEventById = async (id) => {
       }
       startTime.value = new Date(getDetails.value.eventStartTime)
     } else {
-      console.log('cannot get values')
+      console.log('cannot get details')
     }
   }
 }
@@ -58,7 +58,7 @@ onBeforeMount(async () => {
 // สร้างตัวแปรเพื่อเก็บ async func. เพื่อ fetch ไปติดต่อกับ data ที่ backend เพื่อทำ method put และถ้าติดต่อไม่ได้ให้แสดง error
 const updateEvent = async (id) => {
   const res = await fetch(
-    `/api/events/${id}`,
+    `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`,
     {
       method: 'PUT',
       headers: {
@@ -79,8 +79,8 @@ const updateEvent = async (id) => {
     alert('Updated successfully')
     router.go(-1)
   } else {
-    console.log('error, cannot be added')
-    alert('Can not update booking')
+    console.log('Error, cannot updated')
+    alert('Can not updated a booking')
   }
 }
 </script>
@@ -93,21 +93,21 @@ const updateEvent = async (id) => {
           <h2 class="font-bold text-2xl">Edit event form</h2>
           <ul class="text-x">
             <li>
-              <span class="font-bold">Name :</span> {{ getDetails.bookingName }}
+              <span class="font-bold">Name:</span> {{ getDetails.bookingName }}
             </li>
             <li>
-              <span class="font-bold">Email :</span>
+              <span class="font-bold">Email:</span>
               {{ getDetails.bookingEmail }}
             </li>
             <li>
-              <span class="font-bold">Clinic :</span>
+              <span class="font-bold">Clinic:</span>
               {{ getDetails.eventCategory?.eventCategoryName }}
             </li>
             <li></li>
           </ul>
 
           <div>
-            <p class="font-bold">Note :</p>
+            <p class="font-bold">Note:</p>
             <textarea
               v-model="notes"
               placeholder=" Input your notes"
@@ -123,7 +123,7 @@ const updateEvent = async (id) => {
           </div>
           <label for="meeting-time"
             ><p class="font-bold after:ml-0.5 after:text-red-500">
-              Choose a time for your appointment :
+              Choose a time slot for your appointment:
             </p></label
           >
           <input
@@ -141,7 +141,7 @@ const updateEvent = async (id) => {
         >
           UPDATE
         </button>
-        <button class="btn" @click="goBack">Cancel</button>
+        <button class="btn" @click="goBack">CANCEL</button>
       </form>
     </div>
   </div>

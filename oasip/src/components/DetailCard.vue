@@ -18,7 +18,7 @@ const getEventById = async (id) => {
   if (route.query.id) {
     const id = route.query.id;
     const res = await fetch(
-      `/api/events/${id}`,
+      `${import.meta.env.VITE_APP_TITLE}/api/events/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ const getEventById = async (id) => {
       const data = await res.json();
       getDetails.value = data;
     } else {
-      console.log("can not get values");
+      console.log("can not get events");
     }
   }
 };
@@ -51,7 +51,7 @@ const editEvent = (id) => {
 const removeEvent = async () => {
   if (confirm("Would you like to cancel your appointment?") == true) {
     const res = await fetch(
-      `/api/events/${route.query.id}`,
+      `${import.meta.env.VITE_APP_TITLE}/api/events/${route.query.id}`,
       {
         method: "DELETE",
         headers: {
@@ -87,7 +87,7 @@ const removeEvent = async () => {
           <span class="font-bold">Name :</span> {{ getDetails.bookingName }}
         </li>
         <li>
-          <span class="font-bold">Email :</span> {{ getDetails.bookingEmail }}
+          <span class="font-bold">E-mail :</span> {{ getDetails.bookingEmail }}
         </li>
         <li>
           <span class="font-bold"> Date :</span>
@@ -154,4 +154,5 @@ const removeEvent = async () => {
   </div>
 </template>
 
-<style></style>
+<style>
+</style>

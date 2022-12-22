@@ -10,10 +10,10 @@ const appRouter = useRouter();
 
 const checkTokenAndUserRole = () => {
   if (token == "" || token == null) {
-    alert("กรุณาเข้าสู่ระบบก่อนใช้งาน");
+    alert("Please, Sign in first");
     appRouter.push({ name: "Login" });
   } else if (accountRole !== "admin") {
-    alert("คุณไม่มีสิทธิ์ใช้งานหน้านี้");
+    alert("Your role do not have a permission to see details. Please, contact to your admin.");
     appRouter.push({ name: "Home" });
   }
 };

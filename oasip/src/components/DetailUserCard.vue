@@ -26,7 +26,7 @@ const getUsersById = async (id) => {
   if (route.query.id) {
     const id = route.query.id
     const res = await fetch(
-      `/api/users/${id}`,
+      `${import.meta.env.VITE_APP_TITLE}/api/users/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ const getUsersById = async (id) => {
       email.value = getUserDetails.value.email
       role.value = getUserDetails.value.role
     } else {
-      console.log('can not get values')
+      console.log('can not get users')
     }
   }
 }
@@ -65,7 +65,7 @@ const edituser = (id) => {
 const deleteUser = async () => {
   if (confirm('Are you sure you want to delete ?') == true) {
     const res = await fetch(
-      `/api/users/${route.query.id}`,
+      `${import.meta.env.VITE_APP_TITLE}/api/users/${route.query.id}`,
       {
         method: 'DELETE',
         headers: {
@@ -104,8 +104,8 @@ const editUser = async () => {
     alert('Updated successfully')
     router.go(-1)
   } else {
-    console.log('error, cannot be added')
-    alert('Can not update booking')
+    console.log('Error, cannot edited')
+    alert('Can not edited a user')
   }
 };
 </script>
@@ -123,22 +123,22 @@ const editUser = async () => {
     <div v-if="isedit==false">
       <ul  class="text-x">
         <li>
-          <span class="font-bold">Name :</span> {{ getUserDetails.name }}
+          <span class="font-bold">Name:</span> {{ getUserDetails.name }}
         </li>
         <li>
-          <span class="font-bold">Email :</span> {{ getUserDetails.email }}
+          <span class="font-bold">Email:</span> {{ getUserDetails.email }}
         </li>
         <li>
-          <span class="font-bold"> Role :</span>
+          <span class="font-bold"> Role:</span>
           
           {{ getUserDetails.role }}
         </li>
         <li>
-          <span class="font-bold"> Created on :</span>
+          <span class="font-bold"> Created on:</span>
           {{ dayjs(getUserDetails.createOn) }}
         </li>
         <li>
-          <span class="font-bold">Update on :</span>
+          <span class="font-bold">Updated on:</span>
           {{ dayjs(getUserDetails.updateOn) }}
         </li>
       </ul>

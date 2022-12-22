@@ -12,7 +12,7 @@ let accountRole = ref(localStorage.getItem('role'))
 // getAllEvents
 const getEvents = async () => {
   const res = await fetch(
-    `/api/eventCategories`,
+    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,7 +23,7 @@ const getEvents = async () => {
   if (res.status === 200) {
     events.value = await res.json()
   } else {
-    console.log('can not get values')
+    console.log('can not get an events')
   }
 }
 onBeforeMount(async () => {
@@ -55,7 +55,7 @@ onBeforeMount(async () => {
         <p
           class="pt-8 sm:text-lg font-prompt max-w-md text-gray-600 leading-relaxed"
         >
-          เว็บไซต์การนัดหมาย
+          เว็บไซต์สำหรับการนัดหมาย
         </p>
         <div class="flex pt-8 space-x-4 sm:space-x-6">
           <li v-if="accountRole != 'lecturer'">

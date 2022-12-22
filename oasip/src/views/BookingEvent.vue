@@ -17,7 +17,7 @@ const checkUserRole = () => {
 }
 
 const createNewEvent = async (newEvent) => {
-  const res = await fetch(`/api/events`, {
+  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -27,18 +27,18 @@ const createNewEvent = async (newEvent) => {
   if (res.status === 201) {
     const addEvent = await res.json()
     events.value.push(addEvent)
-    console.log('Booked Successfully')
-    alert('Booked Successfully')
+    console.log('Booked successfully')
+    alert('Booked successfully')
     router.go(-1)
   } else  {
-  console.log('error, cannot create')
-  alert('Cannot book, please check it again')
+  console.log('Error, cannot created')
+  alert('Cannot booked a new event, please check it again')
   }
 }
 // // getAllEvents
 const getEventCategories = async () => {
   const res = await fetch(
-    `/api/eventCategories`,
+    `${import.meta.env.VITE_APP_TITLE}/api/eventCategories`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -49,11 +49,11 @@ const getEventCategories = async () => {
   if (res.status === 200) {
     eventCategories.value = await res.json()
   } else {
-    console.log('can not get values')
+    console.log('can not get an event categories')
   }
 }
 const getEvents = async () => {
-  const res = await fetch(`/api/events`,
+  const res = await fetch(`${import.meta.env.VITE_APP_TITLE}/api/events`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const getEvents = async () => {
       })
   if (res.status === 200) {
     events.value = await res.json()
-  } else console.log('Error, cannot get data')
+  } else console.log('Error, can not get events')
 }
 onBeforeMount(async () => {
   checkUserRole()
