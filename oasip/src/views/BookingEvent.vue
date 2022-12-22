@@ -32,7 +32,7 @@ const createNewEvent = async (newEvent) => {
     router.go(-1)
   } else  {
   console.log('Error, cannot created')
-  alert('Cannot booked a new event, please check it again')
+  alert('Can not booked a new event, please check it again')
   }
 }
 // // getAllEvents

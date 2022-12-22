@@ -49,7 +49,7 @@ const filter = () => {
     });
   } else if (fcategory.value != "") {
     fevents.value = fevents.value.filter((event) => {
-      return event.eventCategory.eventCategoryName == fcategory.value;
+      return event.eventCategoryID.eventCategoryName == fcategory.value;
     });
   } else if (fdate.value != "") {
     // for(let d of fevents.value){
